@@ -1,4 +1,6 @@
-using UserService as service from '../../srv/sercives';
+using UserService as service from '../../srv/services';
+using from '@sap/cds/common';
+
 annotate service.User with @(
     UI.FieldGroup #GeneratedGroup : {
         $Type : 'UI.FieldGroupType',
@@ -132,6 +134,14 @@ annotate service.User with @(
                 Value : userlanguage.languageDescription,
                 Label : 'Communication Language',
             },
+            {
+                $Type : 'UI.DataField',
+                Value : systemlanguage.descr,
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : userlanguage.descr,
+            },
         ],
     },
     UI.HeaderInfo : {
@@ -148,25 +158,27 @@ annotate service.User with @(
 );
 
 annotate service.User with {
-    systemlanguage @Common.ValueList : {
-        $Type : 'Common.ValueListType',
-        CollectionPath : 'language',
-        Parameters : [
-            {
-                $Type : 'Common.ValueListParameterInOut',
-                LocalDataProperty : systemlanguage_ID,
-                ValueListProperty : 'ID',
-            },
-            {
-                $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'languageCode',
-            },
-            {
-                $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'languageDescription',
-            },
-        ],
-    }
+    systemlanguage @(
+        Common.ValueList : {
+            $Type : 'Common.ValueListType',
+            CollectionPath : 'language',
+            Parameters : [
+                {
+                    $Type : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : systemlanguage_ID,
+                    ValueListProperty : 'ID',
+                },
+                {
+                    $Type : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'languageCode',
+                },
+                {
+                    $Type : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'languageDescription',
+                },
+            ],
+        },
+        )
 };
 
 annotate service.User with {
@@ -237,4 +249,84 @@ annotate service.language with {
         ![@UI.TextArrangement] : #TextOnly,
     }
 };
+
+annotate service.Language with {
+    name @(
+        Common.ValueList : {
+            $Type : 'Common.ValueListType',
+            CollectionPath : 'Language',
+            Parameters : [
+                {
+                    $Type : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : name,
+                    ValueListProperty : 'name',
+                },
+            ],
+        },
+        Common.ValueListWithFixedValues : true,
+        Common.Text : {
+            $value : code,
+            ![@UI.TextArrangement] : #TextOnly
+        },
+    )
+};
+
+annotate service.Language with {
+    descr @(
+        Common.Text : {
+        $value : name,
+        ![@UI.TextArrangement] : #TextOnly
+    },
+        Common.ValueList : {
+            $Type : 'Common.ValueListType',
+            CollectionPath : 'Language',
+            Parameters : [
+                {
+                    $Type : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : descr,
+                    ValueListProperty : 'descr',
+                },
+            ],
+        },
+        Common.ValueListWithFixedValues : true,
+    )
+};
+
+annotate service.Language.texts with {
+    descr @(
+        Common.Text : name,
+        Common.ValueList : {
+            $Type : 'Common.ValueListType',
+            CollectionPath : 'Language',
+            Parameters : [
+                {
+                    $Type : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : descr,
+                    ValueListProperty : 'name',
+                },
+            ],
+        },
+        Common.ValueListWithFixedValues : true,
+    )
+};
+
+annotate service.Language with {
+    code @(Common.ValueList : {
+            $Type : 'Common.ValueListType',
+            CollectionPath : 'Language',
+            Parameters : [
+                {
+                    $Type : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : code,
+                    ValueListProperty : 'name',
+                },
+            ],
+            Label : '{i18n>UserLanguage}',
+        },
+        Common.ValueListWithFixedValues : true,
+        Common.Text : {
+            $value : name,
+            ![@UI.TextArrangement] : #TextOnly,
+        },
+)};
 

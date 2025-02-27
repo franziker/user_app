@@ -1,4 +1,6 @@
 using { sap.capire.user as my } from '../db/schema';
+using {  sap.common.Languages } from '@sap/cds/common';
+
 
 
 
@@ -7,8 +9,11 @@ using { sap.capire.user as my } from '../db/schema';
  */
 service UserService {
     @odata.draft.enabled
-        entity User as select from my.User;
-    entity language as projection on my.language;
+        entity User as select from my.User{
+            *,
+            cast(concat(firstName, ' ' ,lastName) as String) as name
+        };
+    entity Language as select from Languages;
     entity image as projection on my.image;
   
     }
@@ -22,4 +27,5 @@ service AdminServie {
 
 
 annotate UserService.User with @odata.draft.enabled;
-annotate UserService.language with @odata.draft.enabled;
+annotate UserService.image with @odata.draft.enabled;
+annotate UserService.Language with @odata.draft.enabled;
