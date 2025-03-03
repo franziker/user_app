@@ -1,1 +1,7 @@
 code,locale,name,descr
+en_GB,en,English (United Kingdom),A variant of English used in the United Kingdom
+en_US,en,English (United States),A variant of English used in the United States
+fr_FR,en,French (France),The standard form of the French language spoken in France
+es_ES,en,Spanish (Spain),The standard form of the Spanish language spoken in Spain
+de_DE,en,German (Germany),The standard form of the German language spoken in Germany
+it_IT,en,Italian (Italy),The standard form of the Italian language spoken in Italy

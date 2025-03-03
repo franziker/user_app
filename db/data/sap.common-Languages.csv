@@ -1,1 +1,9 @@
-code,name,descrlanguageCode,languageDescription
+code,name,descr
+en_GB,English (United Kingdom),English language as used in the United Kingdom
+en_US,English (United States),English language as used in the United States
+fr_FR,French (France),French language as used in France 
+es_ES,Spanish (Spain),Spanish language as used in Spain
+de_DE,German (Germany),German language as used in Germany
+it_IT,Italian (Italy),Italian language as used in Italy
+nl_BE,Dutch (Belgium),Dutch language as used in Belgium
+fr_BE,French (Belgium),French language as used in Belgium

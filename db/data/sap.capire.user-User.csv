@@ -1,2 +1,2 @@
-ID,firstName,lastName,email
-1004155,Daniel,Watts,daniel.watts@demo.com
+ID,firstName,lastName,email,systemlanguage_code,userlanguage_code
+1004155,Daniel,Watts,daniel.watts@demo.com,en_GB,en_GB
